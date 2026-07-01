@@ -615,7 +615,7 @@
     .products-header .section-sub { margin: 0 auto; }
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 24px;
     }
     @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -702,7 +702,16 @@
     .pc-v2 { background: var(--prod-v2); }
     .pc-v3 { background: var(--prod-v3); }
     .pc-v4 { background: var(--prod-v4); }
-    .pc-v5 { background: var(--prod-v4); }
+    .pc-v5 { background: var(--prod-v5); }
+    .product-card--featured {
+      border-width: 2px;
+      border-color: var(--sage-dark);
+      box-shadow: var(--shadow-md);
+    }
+    .product-card--featured:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    .product-card--featured .product-card-name { color: var(--sage-dark); }
     .product-card-icon {
       font-size: 5rem;
       filter: drop-shadow(0 8px 16px rgba(0,0,0,.1));
@@ -1950,11 +1959,35 @@
         </div>
 
         <div class="products-grid">
-          <!-- Producto 1: 24 Burn -->
-          <article class="product-card aos aos-delay-1">
+          <!-- Producto 1: 24B+ (nueva versión mejorada de 24 Burn) -->
+          <article class="product-card product-card--featured aos aos-delay-1">
+            <div class="product-card-visual pc-v5">
+              <span class="product-card-badge-new">Nuevo</span>
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/24burn.png" data-lightbox-name="24B+" aria-label="Ampliar imagen de 24B+">
+                <img src="img/24burn.png" alt="24B+ - Suplemento para el metabolismo" loading="lazy" />
+              </button>
+              <span class="product-card-zoom-hint" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </span>
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-cat">Metabolismo</div>
+              <h3 class="product-card-name">24B+</h3>
+              <p class="product-card-desc">Té energizante que potencia tu metabolismo, inhibe el apetito y te mantiene activo durante todo el día.</p>
+              <div class="product-card-tags">
+                <span class="product-tag">Energía sostenida</span>
+                <span class="product-tag">Apetito controlado</span>
+                <span class="product-tag">Metabolismo activo</span>
+              </div>
+              <a href="#contacto" class="product-card-btn-full">Pedir ahora →</a>
+            </div>
+          </article>
+
+          <!-- Producto 2: 24 Burn -->
+          <article class="product-card aos aos-delay-2">
             <div class="product-card-visual pc-v1">
-              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/24burn.png" data-lightbox-name="24 Burn" aria-label="Ampliar imagen de 24 Burn">
-                <img src="img/24burn.png" alt="24 Burn - Suplemento para el metabolismo" loading="lazy" />
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/24burn_ant.png" data-lightbox-name="24 Burn" aria-label="Ampliar imagen de 24 Burn">
+                <img src="img/24burn_ant.png" alt="24 Burn - Suplemento para el metabolismo" loading="lazy" />
               </button>
               <span class="product-card-zoom-hint" aria-hidden="true">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
@@ -1973,11 +2006,12 @@
             </div>
           </article>
 
-          <!-- Producto 2: Renova+ -->
-          <article class="product-card aos aos-delay-2">
-            <div class="product-card-visual pc-v2">
-              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/renova.png" data-lightbox-name="Renova+" aria-label="Ampliar imagen de Renova+">
-                <img src="img/renova.png" alt="Renova+ - Colágeno y belleza" loading="lazy" />
+          <!-- Producto 3: RVA+ (nueva versión mejorada de Renova+) -->
+          <article class="product-card product-card--featured aos aos-delay-3">
+            <div class="product-card-visual pc-v5">
+              <span class="product-card-badge-new">Nuevo</span>
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/renova.png" data-lightbox-name="RVA+" aria-label="Ampliar imagen de RVA+">
+                <img src="img/renova.png" alt="RVA+ - Colágeno y belleza" loading="lazy" />
               </button>
               <span class="product-card-zoom-hint" aria-hidden="true">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
@@ -1985,9 +2019,10 @@
             </div>
             <div class="product-card-body">
               <div class="product-card-cat">Suplemento de Belleza</div>
-              <h3 class="product-card-name">Renova+</h3>
-              <p class="product-card-desc">Colágeno de alta calidad para apoyar la salud de tu piel, cabello, uñas y articulaciones desde adentro.</p>
+              <h3 class="product-card-name">RVA+</h3>
+              <p class="product-card-desc">Versión mejorada de Renova+: el mismo colágeno de alta calidad para tu piel, cabello, uñas y articulaciones, ahora en prácticos sobres individuales en vez del formato en pote anterior.</p>
               <div class="product-card-tags">
+                <span class="product-tag">Formato en sobres</span>
                 <span class="product-tag">Piel saludable</span>
                 <span class="product-tag">Cabello fuerte</span>
                 <span class="product-tag">Articulaciones</span>
@@ -1996,8 +2031,8 @@
             </div>
           </article>
 
-          <!-- Producto 3: Fibra -->
-          <article class="product-card aos aos-delay-3">
+          <!-- Producto 4: Fibra -->
+          <article class="product-card aos aos-delay-4">
             <div class="product-card-visual pc-v3">
               <button type="button" class="product-card-img-wrap" data-lightbox-img="img/liv.png" data-lightbox-name="Fibra" aria-label="Ampliar imagen de Fibra">
                 <img src="img/liv.png" alt="Fibra - Suplemento digestivo" loading="lazy" />
@@ -2019,8 +2054,8 @@
             </div>
           </article>
 
-          <!-- Producto 4: E-BOOST -->
-          <article class="product-card aos aos-delay-4">
+          <!-- Producto 5: E-BOOST -->
+          <article class="product-card aos aos-delay-5">
             <div class="product-card-visual pc-v4">
               <button type="button" class="product-card-img-wrap" data-lightbox-img="img/eboost.png" data-lightbox-name="E-BOOST" aria-label="Ampliar imagen de E-BOOST">
                 <img src="img/eboost.png" alt="E-BOOST - Energía saludable" loading="lazy" />
