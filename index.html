@@ -651,6 +651,17 @@
       width: 100%;
       height: 100%;
       padding: 16px;
+      border: none;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .product-card-img-wrap:focus-visible {
+      outline: 2px solid var(--sage-dark);
+      outline-offset: 4px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     .product-card-img-wrap img {
       max-height: 180px;
@@ -660,8 +671,32 @@
       drop-shadow(0 8px 20px rgba(0,0,0,.2));
       transition: transform .4s cubic-bezier(.4,0,.2,1);
     }
-    .product-card:hover .product-card-img-wrap img {
+    .product-card:hover .product-card-img-wrap img,
+    .product-card-img-wrap:focus-visible img {
       transform: scale(1.06) translateY(-4px);
+    }
+    .product-card-zoom-hint {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.92);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      color: var(--sage-dark);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: var(--transition);
+      pointer-events: none;
+    }
+    .product-card:hover .product-card-zoom-hint,
+    .product-card-img-wrap:focus-visible ~ .product-card-zoom-hint {
+      opacity: 1;
+      transform: translateY(0);
     }
     .pc-v1 { background: var(--prod-v1); }
     .pc-v2 { background: var(--prod-v2); }
@@ -741,6 +776,91 @@
       opacity: .9;
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
+    }
+
+    /* Product image lightbox */
+    .product-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(6,43,21,.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility 0s linear .3s;
+    }
+    .product-lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .3s ease, visibility 0s linear 0s;
+    }
+    .product-lightbox-figure {
+      position: relative;
+      max-width: min(620px, 100%);
+      max-height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(.92) translateY(10px);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .product-lightbox.open .product-lightbox-figure {
+      transform: scale(1) translateY(0);
+    }
+    .product-lightbox-img {
+      max-width: 100%;
+      max-height: 70vh;
+      width: auto;
+      object-fit: contain;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 24px;
+    }
+    .product-lightbox-caption {
+      margin-top: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+    }
+    .product-lightbox-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+    .product-lightbox-close:hover { transform: rotate(90deg); background: var(--sage-dark); color: #fff; }
+    .product-lightbox-close:focus-visible { outline: 2px solid var(--sage-dark); outline-offset: 3px; }
+    @media (max-width: 600px) {
+      .product-lightbox-close { top: 8px; right: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .product-lightbox,
+      .product-lightbox-figure,
+      .product-card-img-wrap img,
+      .product-card-zoom-hint {
+        transition: none !important;
+      }
     }
 
     /* ===========================
@@ -1833,9 +1953,12 @@
           <!-- Producto 1: 24 Burn -->
           <article class="product-card aos aos-delay-1">
             <div class="product-card-visual pc-v1">
-              <div class="product-card-img-wrap">
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/24burn.png" data-lightbox-name="24 Burn" aria-label="Ampliar imagen de 24 Burn">
                 <img src="img/24burn.png" alt="24 Burn - Suplemento para el metabolismo" loading="lazy" />
-              </div>
+              </button>
+              <span class="product-card-zoom-hint" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </span>
             </div>
             <div class="product-card-body">
               <div class="product-card-cat">Metabolismo</div>
@@ -1853,9 +1976,12 @@
           <!-- Producto 2: Renova+ -->
           <article class="product-card aos aos-delay-2">
             <div class="product-card-visual pc-v2">
-              <div class="product-card-img-wrap">
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/renova.png" data-lightbox-name="Renova+" aria-label="Ampliar imagen de Renova+">
                 <img src="img/renova.png" alt="Renova+ - Colágeno y belleza" loading="lazy" />
-              </div>
+              </button>
+              <span class="product-card-zoom-hint" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </span>
             </div>
             <div class="product-card-body">
               <div class="product-card-cat">Suplemento de Belleza</div>
@@ -1873,9 +1999,12 @@
           <!-- Producto 3: Fibra -->
           <article class="product-card aos aos-delay-3">
             <div class="product-card-visual pc-v3">
-              <div class="product-card-img-wrap">
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/liv.png" data-lightbox-name="Fibra" aria-label="Ampliar imagen de Fibra">
                 <img src="img/liv.png" alt="Fibra - Suplemento digestivo" loading="lazy" />
-              </div>
+              </button>
+              <span class="product-card-zoom-hint" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </span>
             </div>
             <div class="product-card-body">
               <div class="product-card-cat">Suplemento Digestivo</div>
@@ -1893,9 +2022,12 @@
           <!-- Producto 4: E-BOOST -->
           <article class="product-card aos aos-delay-4">
             <div class="product-card-visual pc-v4">
-              <div class="product-card-img-wrap">
+              <button type="button" class="product-card-img-wrap" data-lightbox-img="img/eboost.png" data-lightbox-name="E-BOOST" aria-label="Ampliar imagen de E-BOOST">
                 <img src="img/eboost.png" alt="E-BOOST - Energía saludable" loading="lazy" />
-              </div>
+              </button>
+              <span class="product-card-zoom-hint" aria-hidden="true">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+              </span>
             </div>
             <div class="product-card-body">
               <div class="product-card-cat">Energía Saludable</div>
@@ -2588,6 +2720,17 @@
   </div>
 
   <!-- ===========================
+       PRODUCT IMAGE LIGHTBOX
+  =========================== -->
+  <div class="product-lightbox" id="productLightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Imagen ampliada del producto">
+    <figure class="product-lightbox-figure">
+      <button type="button" class="product-lightbox-close" id="productLightboxClose" aria-label="Cerrar imagen ampliada">✕</button>
+      <img class="product-lightbox-img" id="productLightboxImg" src="" alt="" />
+      <figcaption class="product-lightbox-caption" id="productLightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <!-- ===========================
        JAVASCRIPT
   =========================== -->
   <script>
@@ -2640,6 +2783,49 @@
 
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', closeMenu);
+    });
+
+    /* ===========================
+       PRODUCT IMAGE LIGHTBOX
+    =========================== */
+    const productLightbox = document.getElementById('productLightbox');
+    const productLightboxImg = document.getElementById('productLightboxImg');
+    const productLightboxCaption = document.getElementById('productLightboxCaption');
+    const productLightboxClose = document.getElementById('productLightboxClose');
+    let lastLightboxTrigger = null;
+
+    function openProductLightbox(trigger) {
+      lastLightboxTrigger = trigger;
+      productLightboxImg.src = trigger.dataset.lightboxImg;
+      productLightboxImg.alt = trigger.querySelector('img')?.alt || trigger.dataset.lightboxName || '';
+      productLightboxCaption.textContent = trigger.dataset.lightboxName || '';
+      productLightbox.classList.add('open');
+      productLightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      productLightboxClose.focus();
+    }
+
+    function closeProductLightbox() {
+      productLightbox.classList.remove('open');
+      productLightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastLightboxTrigger) lastLightboxTrigger.focus();
+    }
+
+    document.querySelectorAll('[data-lightbox-img]').forEach(trigger => {
+      trigger.addEventListener('click', () => openProductLightbox(trigger));
+    });
+
+    productLightboxClose.addEventListener('click', closeProductLightbox);
+
+    productLightbox.addEventListener('click', (e) => {
+      if (e.target === productLightbox) closeProductLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && productLightbox.classList.contains('open')) {
+        closeProductLightbox();
+      }
     });
 
     /* ===========================
@@ -2915,6 +3101,8 @@
         // Don't hijack when user is typing in a form field
         const tag = document.activeElement.tagName;
         if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        // Don't hijack while the product lightbox is open
+        if (document.getElementById('productLightbox').classList.contains('open')) return;
         e.preventDefault();
         if (isScrolling) return;
         const idx = getCurrentSectionIndex();
