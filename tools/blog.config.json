@@ -1,0 +1,36 @@
+{
+  "site": "https://sinexcusaclau.cl",
+  "nombre": "SinExcusaClau",
+  "fuentes_html": "<style id=\"local-fonts\">\n/* Tipografías alojadas en el sitio (Fontsource, licencia OFL) */\n@font-face{font-family:\"Cormorant Garamond\";font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-300-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"Cormorant Garamond\";font-style:italic;font-weight:300;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-300-italic.woff2) format(\"woff2\")}\n@font-face{font-family:\"Cormorant Garamond\";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-400-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"Cormorant Garamond\";font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-400-italic.woff2) format(\"woff2\")}\n@font-face{font-family:\"Cormorant Garamond\";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-600-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/dm-sans-latin-300-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/dm-sans-latin-400-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/dm-sans-latin-500-normal.woff2) format(\"woff2\")}\n@font-face{font-family:\"DM Sans\";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/dm-sans-latin-600-normal.woff2) format(\"woff2\")}\n</style>",
+  "tema": {
+    "fondo2": "#ffffff",
+    "texto": "#222",
+    "suave": "#666",
+    "borde": "#ddd",
+    "fondo": "#1A9950",
+    "acento": "#2ECC71",
+    "fuente_titulos": "'Cormorant Garamond',serif",
+    "fuente_texto": "'DM Sans',sans-serif"
+  },
+  "og_home": {
+    "imagen": "img/claudia.png",
+    "estilo": "lateral",
+    "kicker": "Productos FWP",
+    "titulo": "Nutrición y bienestar de la mano de Claudia Poblete",
+    "fondo": "linear-gradient(135deg,#0E5C31,#1A9950)"
+  },
+  "paginas_extra": [],
+  "llms": {
+    "resumen": "SinExcusaClau es el sitio de Claudia Poblete, embajadora de la marca FWP en Chile: productos de nutrición, suplementos y bienestar, y una oportunidad de negocio con FWP.",
+    "datos": [
+      "Contacto: WhatsApp +56 9 5615 6721"
+    ],
+    "paginas": [
+      [
+        "Inicio",
+        "",
+        "productos FWP, beneficios, testimonios, oportunidad de negocio y contacto"
+      ]
+    ]
+  }
+}
